@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 const BeerGridStyles = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minMax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 `;
 
 const SingleBeerStyles = styled.div`
@@ -17,6 +17,7 @@ const SingleBeerStyles = styled.div`
     width: 100%;
     height: 200px;
     object-fit: contain;
+    display: block;
     display: grid;
     align-items: center;
     font-size: 10px;
@@ -28,7 +29,7 @@ export default function BeersPage({ data }) {
     <>
       <SEO title={`Beers! We have ${data.beers.nodes.length} in stock`} />
       <h2 className="center">
-        We have {data.beers.nodes.length} Beers available. Dine in only!
+        We have {data.beers.nodes.length} Beers Available. Dine in Only!
       </h2>
       <BeerGridStyles>
         {data.beers.nodes.map((beer) => {
@@ -54,9 +55,10 @@ export default function BeersPage({ data }) {
 }
 
 export const query = graphql`
-  query BeerQuery {
+  query {
     beers: allBeer {
       nodes {
+        id
         name
         price
         image
