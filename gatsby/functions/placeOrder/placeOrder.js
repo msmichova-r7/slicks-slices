@@ -49,12 +49,10 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ message: 'Boop beep bop zzzs goodbye ERR 34234' }),
     };
   }
-  console.log(body);
   // Validate the data coming in is correct
   const requiredFields = ['email', 'name', 'order'];
 
   for (const field of requiredFields) {
-    console.log(`Checking that ${field} is good`);
     if (!body[field]) {
       return {
         statusCode: 400,
